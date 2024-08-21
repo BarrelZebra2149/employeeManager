@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type="text"], input[type="number"], input[type="text"] {
+            width: 98%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            width: 98%;
+            padding: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+        #modifyBtn {
+            margin-top: 10px;
+        }
+        #modifyBtn:hover {
+            background-color: #45a049;
+        }
+        #editEmpName, #editDept, #editGrade {
+            width: 98%;
+            padding: 5px;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    const serverHomeURL = 'http://localhost:3000/home';
+    window.onload = function() {
+        document.getElementById('modifyBtn').addEventListener('click', function() {
+            axios.put(serverHomeURL, { curData: {
+                    index: document.querySelector('#dataIndex').innerText,
+                    empName: document.querySelector('#editEmpName').value,
+                    dept: document.querySelector('#editDept').value,
+                    grade: document.querySelector('#editGrade').value,
+                }}).then(function() {
+                alert('Edit successfully');
+                window.location.href = serverHomeURL;
+            }).catch(function(error) {
+                console.error('Error editing', error);
+            });
+        });
+    }
+</script>
+    <h1>Edit people's info</h1>
+        <h4>empName</h4> <input type="text" name="emgName" id="editEmpName" value="<%= data.empName %>"> <br>
+        <h4>dept</h4> <input type="text" name="dept" id="editDept" value="<%= data.dept %>"> <br>
+        <h4>grade</h4> <input type="text" name="job" id="editGrade" value="<%= data.grade %>"> <br>
+    <hr>
+    <button id="modifyBtn"> Modify </button>
+    <h1 id="dataIndex" style="display: none"><%= dataIndex %></h1>
+</body>
+</html>
