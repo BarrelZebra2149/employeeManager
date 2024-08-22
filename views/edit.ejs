@@ -35,7 +35,7 @@
             margin-top: 10px;
         }
         #modifyBtn:hover {
-            background-color: #45a049;
+            background-color: #285c29;
         }
         #editEmpName, #editDept, #editGrade {
             width: 98%;
@@ -50,24 +50,7 @@
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-    const serverHomeURL = 'http://localhost:3000/home';
-    window.onload = function() {
-        document.getElementById('modifyBtn').addEventListener('click', function() {
-            axios.put(serverHomeURL, { curData: {
-                    index: document.querySelector('#dataIndex').innerText,
-                    empName: document.querySelector('#editEmpName').value,
-                    dept: document.querySelector('#editDept').value,
-                    grade: document.querySelector('#editGrade').value,
-                }}).then(function() {
-                alert('Edit successfully');
-                window.location.href = serverHomeURL;
-            }).catch(function(error) {
-                console.error('Error editing', error);
-            });
-        });
-    }
-</script>
+<script src="http://localhost:3000/js/editManager"></script>
     <h1>Edit people's info</h1>
         <h4>empName</h4> <input type="text" name="emgName" id="editEmpName" value="<%= data.empName %>"> <br>
         <h4>dept</h4> <input type="text" name="dept" id="editDept" value="<%= data.dept %>"> <br>

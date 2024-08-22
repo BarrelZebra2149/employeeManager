@@ -12,6 +12,7 @@ app.set('view engine', 'ejs');
 app.use("/", express.static(path.join(__dirname,"public")));
 app.use(cors());
 
+
 let empCnt = 105;
 const peopleList = [
     {empNo :101, empName: "Emp01", dept:"Customer Service", grade:"Staff"},
@@ -28,6 +29,11 @@ app.get('/home', (req, res) => {
     //console.log("get home request");
     res.render('home', {data : peopleList});
 })
+
+// Route to serve the JavaScript file
+app.get('/js/editManager', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/resources/js/editManager.js'));
+});
 
 app.get('/home/edit', (req, res) => {
     //console.log("get edit request");
