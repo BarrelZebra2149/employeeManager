@@ -1,4 +1,4 @@
-const serverHomeURL = 'http://localhost:3000/home';
+const serverHomeURL = '/home';
 window.onload = function() {
     document.getElementById('modifyBtn').addEventListener('click', function() {
         axios.put(serverHomeURL, { curData: {

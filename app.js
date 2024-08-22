@@ -35,6 +35,10 @@ app.get('/js/editManager', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/resources/js/editManager.js'));
 });
 
+app.get('/js/empListManager', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/resources/js/empListManager.js'));
+});
+
 app.get('/home/edit', (req, res) => {
     //console.log("get edit request");
     //console.log(req.query);

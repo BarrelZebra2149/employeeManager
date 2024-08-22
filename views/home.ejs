@@ -3,86 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-        .editButton, .deleteButton {
-            padding: 5px;
-            border: none;
-            cursor: pointer;
-        }
-        .editButton:hover,.deleteButton:hover {
-            background-color: #ddd;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-    </style>
+    <link rel="stylesheet" href="../public/resources/css/home.css">
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-    const serverHomeURL = 'http://localhost:3000/home';
-
-    window.onload = function() {
-        const addEmployee = document.querySelector('#addEmployee');
-        const editButtons = document.querySelectorAll('.editButton');
-        const deleteButtons = document.querySelectorAll('.deleteButton');
-
-        addEmployee.addEventListener('click', function() {
-            const empName = document.querySelector('#inpEmpName').value;
-            const dept = document.querySelector('#inpDept').value;
-            const grade = document.querySelector('#inpGrade').value;
-
-            axios.post(serverHomeURL, {empName, dept, grade}).then(function () {
-                console.log('Add employee successfully');
-                document.querySelector('#inpEmpName').value = '';
-                document.querySelector('#inpDept').value = '';
-                document.querySelector('#inpGrade').value = '';
-            }).then(function(response) {
-                document.location.reload();
-            }).catch(function (error) {
-                console.error('Error:', error);
-            });
-        });
-
-        editButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const empNo = button.closest('tr').querySelector('#empNo').innerText;
-                window.location.href = serverHomeURL + '/edit?empNo=' + empNo;
-            });
-        });
-
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const empNo = button.closest('tr').querySelector('#empNo').innerText;
-                if(confirm("Are you sure?")) {
-                    axios.delete(`${serverHomeURL}?empNo=${empNo}`).then(function() {
-                        console.log('Delete employee successfully');
-                        document.location.reload();
-                    }).catch(function (error) {
-                        console.error('Error:', error);
-                    });
-                }
-            });
-        });
-
-    };
-</script>
+<script src="/js/empListManager"></script>
 <h1>Employee Management System</h1>
 empName : <input type="text" id="inpEmpName">
 dept : <input type="text" id="inpDept">
